@@ -32,5 +32,20 @@ def display_age_difference(people):
     # PERSON is older
     # PERSON and PERSON's age difference is: X years, X months, and X days
 
-    print(people)
-    pass
+    format_string = "%Y-%m-%d"
+    person_0 = datetime.datetime.strptime(people[0]['birthday'], format_string)
+    person_1 = datetime.datetime.strptime(people[1]['birthday'], format_string)
+
+    if person_0 < person_1:
+        difference = relativedelta.relativedelta(person_1, person_0)
+        print(f"{people[0]['name']} is older")
+    else:
+        difference = relativedelta.relativedelta(person_0, person_1)
+        print(f"{people[1]['name']} is older")
+
+
+    # print(difference)
+
+    print(f"{people[0]['name']} and {people[1]['name']}'s age difference is: {difference.years} years, {difference.months} months, and {difference.days} days")
+    # print(people)
+    # pass
